@@ -1,0 +1,26 @@
+﻿<div id="body">
+	<canvas id="canvas"></canvas>
+
+	<h3>Tasks</h3>
+
+	<div>
+		Add task: <input data-bind="value: newTaskText" placeholder="What needs to be done?" />
+		<button data-bind="click: addTask">Add</button>
+	</div>
+
+	<ul data-bind="foreach: tasks, visible: tasks().length > 0">
+		<li>
+			<input type="checkbox" data-bind="checked: isDone" />
+			<input data-bind="value: title, disable: isDone" />
+			<a href="#" data-bind="click: $parent.removeTask">Delete</a>
+		</li>
+	</ul>
+
+	You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+	<span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span>
+
+	@section scripts
+	{
+		<script type="text/javascript" src="~/Scripts/koTodo.js"></script>
+	}
+</div>

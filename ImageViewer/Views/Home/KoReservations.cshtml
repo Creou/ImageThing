@@ -1,0 +1,26 @@
+﻿<div id="body">
+	<canvas id="canvas"></canvas>
+
+	<h2>Your seat reservations (<span data-bind="text: seats().length"></span>)</h2>
+	<button data-bind="click: addSeat, text:addButtonText(), visible: seats().length < 5"></button>
+
+	<table data-bind="visible: seats().length">
+		<thead><tr><th>Passenger name</th><th>Meal</th><th>Surcharge</th></tr></thead>
+		<tbody data-bind="foreach: seats">
+			<tr>
+				<td><input data-bind="value: name" /></td>
+				<td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'name'"></select></td>
+				<td data-bind="text: formattedPrice"></td>
+				<td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<h3 data-bind="visible: totalSurcharge() > 0">
+		Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+	</h3>
+
+	@section scripts
+	{
+		<script type="text/javascript" src="~/Scripts/koReservations.js"></script>
+	}
+</div>

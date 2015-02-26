@@ -1,0 +1,38 @@
+﻿<div id="body" class="fill" style="background-color:gray">
+	<div id="filters" class="panel panel-default col-md-2">
+		<div class="btn btn-primary btn-block" data-bind="visible: tagTypes, foreach: {data: tagTypes(), as: 'type'}">
+			<div>
+				<span data-bind="text:id.toString(16) + ' - ' + name"></span>
+				<a class="glyphicon glyphicon-plus pull-right" data-toggle="collapse" data-bind="attr:{href:'#'+$index()}"></a>
+				<input class="pull-right" type="checkbox" data-bind="checked: enabled" onclick="" />
+				<div class="btn btn-block collapse" data-bind="foreach: values, attr: {id: $index}">
+					<div>
+						<span data-bind="text: value, disable: enabled"></span>
+						<input class="pull-right" type="checkbox" data-bind="checked: enabled, enable: type.enabled" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="control" class="col-md-10" style="background-color:gray">
+		<input id="slider" type="range" min="0" max="10" data-bind="value: zoomSlider" />
+		<textarea rows="4" cols="100" id="debug" style="min-width: 1000px;" data-bind="value: debug"></textarea>
+
+		<div style="width: 800px; height: 600px; background-color: gray; overflow: hidden;">
+			<canvas id="canvas" tabindex="1"class="fill" style="background-color:azure; width: 100%; height: 100%; border: none; margin: 0px">awesome canvas that your browser didnt support</canvas>
+		</div>
+
+	</div>
+	<script id="valueTempl" type="text/html">
+		<li><span data-bind="text: $data"></span></li>
+	</script>
+
+
+	@section scripts
+	{
+	<script type="text/javascript" src="~/Scripts/tags.js"></script>
+	<script type="text/javascript" src="~/Scripts/canvas.js"></script>
+	<script type="text/javascript" src="~/Scripts/onLoad.js"></script>
+	}
+</div>
